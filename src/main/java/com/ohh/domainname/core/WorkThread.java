@@ -1,8 +1,9 @@
-package com.ohh.domainname.entity.core;
+package com.ohh.domainname.core;
 
 import org.springframework.web.client.RestTemplate;
 
 public class WorkThread extends Thread {
+
     private RestTemplate restTemplate;
 
     public WorkThread(Runnable runnable,RestTemplate restTemplate) {

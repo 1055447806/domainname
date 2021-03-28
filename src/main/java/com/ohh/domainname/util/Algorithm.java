@@ -23,12 +23,7 @@ public class Algorithm {
         }
     }
 
-    public static void setRound(String head, String tail) {
-        defaultHead = head;
-        defaultTail = tail;
-    }
-
-    public static List<String> getWords(int total) {
+    private static List<String> getWords(int total) {
         if (Objects.isNull(defaultHead)) {
             char[] chars = new char[total];
             Arrays.fill(chars, '-');
@@ -48,7 +43,7 @@ public class Algorithm {
         return list;
     }
 
-    public static void getWords(int total, int curr, List<String> list, StringBuilder builder) {
+    private static void getWords(int total, int curr, List<String> list, StringBuilder builder) {
         if (curr == total) {
             String word = builder.toString();
             if (word.compareTo(defaultHead) >= 0 && word.compareTo(defaultTail) <= 0) {
@@ -59,6 +54,36 @@ public class Algorithm {
         for (char c : CHARS) {
             builder.setCharAt(curr, c);
             getWords(total, curr + 1, list, builder);
+        }
+    }
+
+    public static Builder builder() {
+        return Builder.getInstance();
+    }
+
+    public static class Builder {
+
+        private static final Builder instance = new Builder();
+
+        private Builder() {
+        }
+
+        private static Builder getInstance() {
+            return instance;
+        }
+
+        public Builder setHead(String head) {
+            defaultHead = head;
+            return this;
+        }
+
+        public Builder setTail(String tail) {
+            defaultTail = tail;
+            return this;
+        }
+
+        public List<String> getWords(int total) {
+            return Algorithm.getWords(total);
         }
     }
 }

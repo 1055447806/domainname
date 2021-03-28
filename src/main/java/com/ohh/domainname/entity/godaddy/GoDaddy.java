@@ -1,12 +1,11 @@
 package com.ohh.domainname.entity.godaddy;
 
 import com.alibaba.fastjson.JSON;
-import com.ohh.domainname.entity.core.EntityClass;
-import com.ohh.domainname.entity.core.WebSiteEntity;
+import com.ohh.domainname.core.WebSiteAdaptor;
 
 import java.util.Objects;
 
-public class GoDaddy extends WebSiteEntity {
+public class GoDaddy extends WebSiteAdaptor {
 
     private static final String API = "https://sg.godaddy.com/zh/domainfind/v1/search/exact?q={domainName}";
 
@@ -15,11 +14,6 @@ public class GoDaddy extends WebSiteEntity {
     @Override
     public String getApi() {
         return API;
-    }
-
-    @Override
-    public Class<? extends EntityClass> getEntityClass() {
-        return CLAZZ;
     }
 
     @Override
